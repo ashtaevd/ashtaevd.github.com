@@ -1,2 +1,2 @@
 # ashtaevd.github.com
-ashtaev com
+The first version of my personal website.
