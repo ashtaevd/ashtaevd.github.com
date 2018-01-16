@@ -24,6 +24,11 @@ a {
 
 }
 
+.wrapper {
+	margin-right: auto; /* 1 */
+	margin-left:  auto
+}
+
 /*------Header------*/
 
 header {
@@ -87,10 +92,21 @@ nav li:hover {
 
 }
 
+.description {
+	display: inline-block;
+	position: fixed;
+	left:25px;
+    bottom: 25px;
+	z-index: 0;
+    /*width: 100%;*/
+    font-size: 200%;
+}
+
 /*------About------*/
 
 p {
 	margin-bottom: 25px;
+	line-height: 150%;
 }
 
 #about {
@@ -232,20 +248,15 @@ sup {
 	}
 
 	header {
-		/*margin: 0;*/
 		padding-bottom: 25px;
 		width: 100%;
 		font-size: 160%;
 		height: 100px;
-		/*padding-bottom: 125px;*/
 	}
 
 	h1 {
 		display: block;
 		text-align: center;
-		/*font-size: 100%;*/
-		/*margin-right: auto;*/
-		/*margin-left:  auto;*/
 		margin: 12.5px 25px 0px 25px;
 	}
 
@@ -265,6 +276,10 @@ sup {
 		/*display:block;*/
 		float: right;
 		margin-left: 0px;
+	}
+
+	.description {
+	    font-size: 160%;
 	}
 
 	#about {
