@@ -28,22 +28,24 @@
 		<h1><a href="http://ashtaev.com"><span id="eng-name">Daniil Ashtaev</span><span id="rus-name">Даниил Аштаев</span></a></h1>
 		<nav>
 			<ul class="nav"> 
-				<li class="projects-button"><a href="http://ashtaev.com/portfolio/">projects</a></li>
-				<li class="about-button">about</li>
+				<li class="reel-button">Reel</li>
+				<li class="projects-button"><a href="http://ashtaev.com/portfolio/">Projects</a></li>
+				<li class="about-button">About</li>
 			</ul>
 		</nav>
 	</header>
 
-	<!-- <div class="decription">
-		<h2> Graphic designer</h2>
-		<h2>ashtaevd@gmail.com</h2>
-	</div> -->
-
 	<div class="wrapper">
 
 		<div class="description">
-			<h2>Graphic designer, elsewhere and NYC</br>
+			<h2>Graphic designer, elsewhere&nbsp;and&nbsp;NYC</br>
 			ashtaevd@gmail.com</h2>
+		</div>
+
+		<div id="reel">
+
+			<iframe src="https://player.vimeo.com/video/287008549?color=FFFFFF&title=0&byline=0&portrait=0" width="640" height="360" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
 		</div>
 
 		<div id="about">
@@ -71,46 +73,56 @@
 
 	<!-- jQuery -->
 	<script>
+		$(document).ready(function(){
 
-		$('.about-button').click(function(){
+			$('.reel-button').click(function(){
 
-			$('#about').toggleClass('aboutOn');
+				console.log("Reel Click");
+				$('#reel').toggleClass('reelOn');
+
+			});
+
+			$('.about-button').click(function(){
+
+				$('#about').toggleClass('aboutOn');
+
+			});
+
+			$('.close-button').click(function(){
+
+				$('#about').toggleClass('aboutOn');
+
+			});
+
+			//---professional practice duration
+			var today = new Date();
+			var dd = today.getDate();
+			var mm = today.getMonth()+1; //January is 0!
+			var yyyy = today.getFullYear();
+
+			if(dd<10) {
+			    dd='0'+dd
+			} 
+
+			if(mm<10) {
+			    mm='0'+mm
+			} 
+
+			today = mm+'.'+dd+'.'+yyyy;
+
+			var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+			var firstDate = new Date(2015,08,17);
+			var secondDate = new Date(yyyy,mm,dd);
+
+			var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
+			$("span.workDays").text(diffDays);
+
+			workYears = diffDays /= 365;
+			workYears = Math.round(workYears * 100) / 100;
+
+			$("span.workYears").text(workYears);
 
 		});
-
-		$('.close-button').click(function(){
-
-			$('#about').toggleClass('aboutOn');
-
-		});
-
-		//---professional practice duration
-		var today = new Date();
-		var dd = today.getDate();
-		var mm = today.getMonth()+1; //January is 0!
-		var yyyy = today.getFullYear();
-
-		if(dd<10) {
-		    dd='0'+dd
-		} 
-
-		if(mm<10) {
-		    mm='0'+mm
-		} 
-
-		today = mm+'.'+dd+'.'+yyyy;
-
-		var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
-		var firstDate = new Date(2015,08,17);
-		var secondDate = new Date(yyyy,mm,dd);
-
-		var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
-		$("span.workDays").text(diffDays);
-
-		workYears = diffDays /= 365;
-		workYears = Math.round(workYears * 100) / 100;
-
-		$("span.workYears").text(workYears);
 
 	</script>
 
@@ -133,7 +145,7 @@
 		function init() {
 
 			renderer = new THREE.WebGLRenderer();
-			renderer.setClearColor( 0xffffff );
+			renderer.setClearColor( 0xfafafa );
 			renderer.setPixelRatio( window.devicePixelRatio );
 			renderer.setSize( window.innerWidth, window.innerHeight );
 			document.body.appendChild( renderer.domElement );
@@ -151,13 +163,13 @@
 			controls.maxDistance = 700;
 
 			scene = new THREE.Scene();
-			scene.fog = new THREE.Fog( 0xffffff, 1, 1000 );
+			scene.fog = new THREE.Fog( 0xfafafa, 1, 1000 );
 
 			// var light = new THREE.AmbientLight( 0x404040 ); // soft white light
 			// scene.add( light );
 
 			var daniilTexture = new THREE.TextureLoader().load( 'textures/dirtyd.jpg' );
-			var daniilGeometry = new THREE.BoxBufferGeometry( 48, 48, .5 );
+			var daniilGeometry = new THREE.BoxBufferGeometry( 48, 48, .35 );
 			var daniilMaterial = new THREE.MeshBasicMaterial( { map: daniilTexture } );
 
 			daniil = new THREE.Mesh ( daniilGeometry, daniilMaterial );
@@ -172,14 +184,22 @@
 			// color randomizer
 			for ( var i = 0; i < desks.length; i++ ) {
 			
+				// colors — initial instance
 				var colorName = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
 				var material = new THREE.MeshBasicMaterial( { color: colorName } );	
+
+				// // random grays
+				// var value = Math.random() * 0xFF | 0;
+				// var grayscale = (value << 16) | (value << 8) | value;
+				// var grayColor = '#' + grayscale.toString(16);
+				// var material = new THREE.MeshBasicMaterial( { color: grayColor } );
 
 			}
 
 
+
 			var radius = 1100;
-			var nDesks = 1000;
+			var nDesks = 800;
 
 			for ( var i = 0; i < nDesks; i++) {
 
@@ -227,8 +247,6 @@
 		}
 
 	</script>
-
-	
 
 </body>
 </html>
