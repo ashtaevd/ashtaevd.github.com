@@ -156,6 +156,14 @@ iframe {
 
 }
 
+/*------About------*/
+
+#about a {
+    	display: inline-block;
+    	border-bottom: 2px solid;
+    	border-color: rgb(140,140,140);
+}
+
 #about {
 
 	position: fixed;
